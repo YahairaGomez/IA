@@ -1,0 +1,156 @@
+#include <iostream>
+#include <math.h>
+#include <vector>
+#include <list>
+#include <stack>
+#include <queue>
+#define KEY_ESC 27
+using namespace std;
+int grid_x, grid_y;
+
+struct Point2D {
+	int x, y;
+	vector<Point2D*> neigh;
+	vector<Point2D*> path;
+	bool activated = true, dfs = false;
+	float distance = 0.0f;
+	Point2D() {
+		this->x = this->y = 0;
+	}
+	Point2D(int x, int y) {
+		this->x = x;
+		this->y = y;
+	}
+
+};
+template<typename T>
+void pop_front(std::vector<T>& v)
+{
+	if (v.size() > 0) {
+		v.erase(v.begin());
+	}
+}
+
+bool compare_distances(Point2D* A, Point2D* B) {
+	return A->distance < B->distance;
+}
+
+std::vector<Point2D*> points;
+std::vector<Point2D*> start_end; 
+std::vector<Point2D*> deleted_nodes; //nodos que ya no pertenecen al grafo
+std::vector<Point2D*> path;
+
+bool r = false;
+
+float euclidean_distance(Point2D* A, Point2D* B) {
+	return sqrt(pow((A->x - B->x), 2) + pow((A->y - B->y), 2));
+}
+
+stack<Point2D*> my_stack;
+void hillclimbing(Point2D* partida, Point2D* llegada) {
+	bool flag;
+	Point2D* v;
+	flag = 0;
+	if (my_stack.empty()) {
+		cout << "\n";
+		return;
+	}
+	v = my_stack.top();
+	//1my_stack.pop();
+	v->path.push_back(v);
+
+	if (v->x == llegada->x && v->y == llegada->y) {
+		//path = cur_path;
+		path = v->path;
+		return;
+	}
+
+	list<Point2D*> childs;
+	for (int i = 0; i < v->neigh.size(); i++) {
+		if (v->neigh[i]->activated == true && v->neigh[i]->dfs == false) {
+			childs.push_front(v->neigh[i]);
+			v->neigh[i]->dfs = true;
+			v->neigh[i]->path = v->path;
+			flag = true;
+		}
+	}
+	if (flag) {
+		childs.sort(compare_distances);
+		childs.reverse();
+		for (list<Point2D*>::iterator it = childs.begin(); it != childs.end();
+			it++) {
+			//stack_sim.push_back(*it);
+			my_stack.push(*it);
+		}
+	}
+	else {
+		//stack_sim.pop_front();
+		my_stack.pop();
+	}
+	hillclimbing(partida, llegada);
+}
+
+void generate_points() {
+	int min_x = -grid_x / 2.0f, max_x = grid_x / 2.0f;
+	int min_y = -grid_y / 2.0f, max_y = grid_y / 2.0f;
+	Point2D* pt;
+	for (int i = min_x + 5.0f; i < max_x - 5.0f; i += 10) {
+		for (int j = min_y + 5.0f; j < max_y - 5.0f; j += 10) {
+			pt = new Point2D(i, j);
+			points.push_back(pt);
+		}
+	}
+	int tempx = (grid_x - 5) / 10;
+	int tempy = (grid_y - 5) / 10;
+	cout << tempx << " " << tempy << endl;
+	for (int i = 0; i < tempx; i++) {
+		for (int j = 0; j < tempy; j++) {
+			
+			if (j - 1 >= 0) {
+				points[i * tempy + j]->neigh.push_back(points[i * tempy + (j - 1)]);
+				//cout<<points[i*(j-1)]->x<<" "<<points[i*(j-1)]->y<<endl;
+			}
+			if (j + 1 < tempy) {
+				points[i * tempy + j]->neigh.push_back(points[i * tempy + (j + 1)]);
+				//cout<<points[i*(j+1)]->x<<" "<<points[i*(j+1)]->y<<endl;
+			}
+			if (i - 1 >= 0) {
+				points[i * tempy + j]->neigh.push_back(points[j + (i - 1) * tempy]);
+				//cout<<points[j*(i-1)]->x<<" "<<points[j*(i-1)]->y<<endl;
+			}
+			if (i + 1 < tempx) {
+				points[i * tempy + j]->neigh.push_back(points[j + (i + 1) * tempy]);
+				//cout<<points[j*(i+1)]->x<<" "<<points[j*(i+1)]->y<<endl;
+			}
+			if (i + 1 < tempx && j - 1 >= 0) {
+				points[i * tempy + j]->neigh.push_back(points[(j - 1) + (i + 1) * tempy]);
+				//cout<<points[(j-1)*(i+1)]->x<<" "<<points[(j-1)*(i+1)]->y<<endl;
+			}
+			if (i - 1 >= 0 && j + 1 < tempy) {
+				points[i * tempy + j]->neigh.push_back(points[(j + 1) + (i - 1) * tempy]);
+				//cout<<points[(j+1)*(i-1)]->x<<" "<<points[(j+1)*(i-1)]->y<<endl;
+			}
+			if (i - 1 >= 0 && j - 1 >= 0) {
+				points[i * tempy + j]->neigh.push_back(points[(j - 1) + (i - 1) * tempy]);
+				//cout<<points[(j-1)*(i-1)]->x<<" "<<points[(j-1)*(i-1)]->y<<endl;
+			}
+			if (i + 1 < tempx && j + 1 < tempy) {
+				points[i * tempy + j]->neigh.push_back(points[(j + 1) + (i + 1) * tempy]);
+				//cout<<points[(j+1)*(i+1)]->x<<" "<<points[(j+1)*(i+1)]->y<<endl;
+			}
+			//cout<<"------------------------------------------------------"<<endl;
+		}
+	}
+	cout << "points " << points.size() << endl;
+}
+
+int main(int argc, char** argv) {
+	cout << "tamaño grilla\n";
+	cin >> grid_x >> grid_y;
+	generate_points();
+	hillclimbing(points[0],points[10]);
+	for(int i=0;i<path.size();i++){
+	cout<<path[i]->x<<" , "<<path[i]->y<<endl;
+	}
+	return 0;
+}
