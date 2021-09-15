@@ -18,8 +18,8 @@ Luego ejecute el programa con:
 ## Autor ✒️
 
 * **Yahaira Gomez Sucasaca** - *Documentación* - [YahairaGomez](https://github.com/YahairaGomez)
-* **Anel Veliz Choque** - *Documentación* - [YahairaGomez](https://github.com/YahairaGomez)
-* **Rayza Rodriguez Injante** - *Documentación* - [YahairaGomez](https://github.com/YahairaGomez)
+* **Anel Veliz Choque** - *Documentación* - [alexa1999](https://github.com/alexa1999)
+* **Rayza Rodriguez Injante** - *Documentación* - [RayzaRodrgiuez](https://github.com/RayzaRodrgiuez)
 
 ## Expresiones de Gratitud 🎁
 
