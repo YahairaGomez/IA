@@ -19,7 +19,7 @@ Luego ejecute el programa con:
 
 * **Yahaira Gomez Sucasaca** - *Documentación* - [YahairaGomez](https://github.com/YahairaGomez)
 * **Anel Veliz Choque** - *Documentación* - [alexa1999](https://github.com/alexa1999)
-* **Rayza Rodriguez Injante** - *Documentación* - [RayzaRodrgiuez](https://github.com/RayzaRodrgiuez)
+* **Rayza Rodriguez Injante** - *Documentación* - [RayzaRodriguez](https://github.com/RayzaRodriguez)
 
 ## Expresiones de Gratitud 🎁
 
