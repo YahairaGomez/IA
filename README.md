@@ -4,6 +4,7 @@ En este trabajo se implementarán 2 algoritmos: 1 algoritmo de búsqueda ciega y
 
 ## Comenzando ⚙️
 El programa recibe dos entradas que son el tamaño de la matriz o grilla. Se debe ingresar el tamaño de x y luego el de y. A continuación, se mostrará la interfaz gráfica con el camino encontrado.
+Nuestro grupo implementó el algoritmo Hillclimbing (algoritmo de búsqueda ciega) y A* (algoritmo de búsqueda heurística).
 En este trabajo se trabajó con el lenguaje de programación C++, la API OpenGL y Zinjai.
 
 ### Instalación 🔧
