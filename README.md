@@ -4,16 +4,10 @@ En este trabajo se implementarán 2 algoritmos: 1 algoritmo de búsqueda ciega y
 
 ## Comenzando ⚙️
 El programa recibe dos entradas que son el tamaño de la matriz o grilla. Se debe ingresar el tamaño de x y luego el de y. A continuación, se mostrará la interfaz gráfica con el camino encontrado.
-En este trabajo se trabajó con el lenguaje de programación C++ y la API OpenGL.
+En este trabajo se trabajó con el lenguaje de programación C++, la API OpenGL y Zinjai.
 
 ### Instalación 🔧
-Para instalar y correr el proyecto descargue la carpeta la carpeta completa y ejecute el programa el cualquier entorno de desarrollo o también puede compilarlo desde su consola con el siguiente comando:
-
-g++ -std=c++0x -o grafito.exe grafito.cpp 
-
-Luego ejecute el programa con:
-
-./grafito.exe
+Para instalar y correr el proyecto descargue la carpeta la carpeta completa y ejecute el programa en el IDE Zinjai.
 
 ## Autor ✒️
 
