@@ -11,7 +11,7 @@ En este trabajo se trabajó con el lenguaje de programación C++, la API OpenGL 
 Para instalar y correr el proyecto descargue la carpeta la carpeta completa y ejecute el programa en el IDE Zinjai.
 
 ### Demo 🔧
-<img src="/images/grilla.png">
+<img src="/IA//images/grilla.png">
 
 
 ## Autor ✒️
